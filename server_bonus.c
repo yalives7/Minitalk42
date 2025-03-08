@@ -1,7 +1,4 @@
 #include "minitalkbonus.h"
-#include <unistd.h>
-#include <signal.h>
-#include <stdio.h>
 
 t_data data = {128, 0, 0};
 
@@ -27,7 +24,6 @@ void handler(int sig, siginfo_t *info, void *ucontext) {
         }
         reset_data();
     }
-  kill(info->si_pid, SIGUSR1); 
 
 }
 
@@ -36,6 +32,7 @@ int main(void) {
     sa.sa_sigaction = handler;
     sa.sa_flags = SA_SIGINFO;
     ft_putnbr(getpid());
+    write(1,"\n",1);
     sigemptyset(&sa.sa_mask);
     sigaction(SIGUSR1, &sa, NULL);
     sigaction(SIGUSR2, &sa, NULL);

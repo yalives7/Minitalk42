@@ -1,7 +1,7 @@
 #ifndef MINITALKBONUS_H
 #define MINITALKBONUS_H
 #include <signal.h>
-
+#include <unistd.h>
 typedef struct s_data
 {
     int bit;

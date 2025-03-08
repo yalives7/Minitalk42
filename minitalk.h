@@ -1,38 +1,15 @@
-#include <unistd.h>
+#ifndef MINITALKBONUS_H
+#define MINITALKBONUS_H
 #include <signal.h>
-
-t_data data = {128,0};
-
-void reset_data(void)
+#include <unistd.h>
+typedef struct s_data
 {
-    data.bit = 128;
-    data.c=0;
+    int bit;
+    int c;
+} t_data;
 
-}
+int ft_atoi(char *str);
+void ft_putnbr(int nbr);
+void ft_putstr(char *str);
 
-void handler(int sig)
-{
-    if(sig == SIGUSR1)
-    {
-        data.c += data.bit;
-    }
-    data.bit /= 2;
-    if(data.bit == 0)
-    {
-        write(1,&data.c,1);
-        reset_data();
-    }
-}
-
-int main(void)
-{
-     ft_putnbr(get_pid());
-     signal (SIGUSR1,handler);
-     signal(SIGUSR2,handler);
-    while(1)
-    {
-        pause();
-    }
-    return 0;
-
-}
+#endif
